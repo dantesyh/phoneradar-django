@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Phone Radar | Model List - {{ brand }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Brand List</h5>
+                        <ul class="list-group">
+                            {% for brand in brands %}
+                                <li class="list-group-item"><a
+                                        href="{% url 'main:model' brand.slug %}">{{ brand.title }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <h2>Model List</h2>
+                <ul class="list-group">
+                    {% for model in all_models %}
+                        <li class="list-group-item"><a href="{% url 'main:review' model.slug %}">{{ model.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

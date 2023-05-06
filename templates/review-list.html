@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Phone Radar | Review List - {{ model }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">News Link</h5>
+                        <var id="links" style="display: none">{{ news_link }}</var>
+                        <ul class="list-group" id="link-list">
+                            <!-- Links will be dynamically added here -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <h2 class="title">Review List</h2>
+                <ul class="list-group">
+                    {% for review in all_reviews %}
+                        <li class="list-group-item"><a
+                                href="{% url 'main:review_detail' review.slug %}">{{ review.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block script %}
+    <script type="text/javascript">
+        const links = document.getElementById("links").innerText;
+        const linksArray = links.split("\n");
+        const list = document.getElementById("link-list");
+        linksArray.forEach(function (link) {
+            const listItem = document.createElement("li");
+            listItem.className = "list-group-item";
+            const linkElement = document.createElement("a");
+            linkElement.href = link;
+            linkElement.innerText = link;
+            listItem.appendChild(linkElement);
+            list.appendChild(listItem);
+        });
+    </script>
+{% endblock %}

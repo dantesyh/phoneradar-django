@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Phone Radar | {{ review.title }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>{{ review.title }}</h1>
+        <p>Publish Date: {{ review.date }}</p>
+        <div class="row">
+            <div class="col">
+                <p class="text-lg-left">{{ review.content | linebreaksbr }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
